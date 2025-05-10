@@ -2,12 +2,12 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LabelList, PieChart, Pie, Cell, LineChart, Line, Legend
 } from 'recharts';
 import { useRouter } from 'next/navigation';
-import SiteHeader from '@/components/SiteHeader';
 
 const tabs = [
   { key: "sm", label: "SM Report" },
@@ -17,13 +17,13 @@ const tabs = [
 
 function TabSwitcher({ active, setActive }: { active: string; setActive: (k: string) => void }) {
   return (
-    <div className="flex justify-center mb-8">
+    <div className="flex justify-center mb-6">
       <div className="inline-flex bg-white/5 rounded-lg overflow-hidden">
         {tabs.map((tab) => (
           <button
             key={tab.key}
             onClick={() => setActive(tab.key)}
-            className={`px-8 py-2 text-lg font-medium transition-colors duration-200 focus:outline-none ${
+            className={`px-6 py-1.5 text-sm font-medium transition-colors duration-200 focus:outline-none ${
               active === tab.key
                 ? "bg-indigo-600 text-white"
                 : "bg-transparent text-white/70 hover:bg-white/10"
@@ -247,16 +247,16 @@ function rand(min: number, max: number) {
 }
 
 // --- SM Report Tab Data ---
-const smTrend = [rand(75, 90), rand(80, 95), rand(85, 100), rand(80, 100), rand(90, 100)];
-const smRadar = Array.from({ length: 11 }, () => rand(65, 100));
-const smFeedbackPoll = [rand(7, 10), rand(7, 10), rand(7, 10)];
-const smSessionFeedback = [rand(70, 100), rand(70, 100), rand(70, 100), rand(70, 100)];
+const smTrend = [88, 92, 95, 91, 94]; // Fixed values instead of random
+const smRadar = [78, 82, 90, 85, 92, 75, 88, 95, 87, 93, 81]; // Fixed values for radar chart
+const smFeedbackPoll = [8, 9, 8]; // Fixed feedback values
+const smSessionFeedback = [85, 92, 78, 88]; // Fixed session feedback
 
 // --- User Report Tab Data ---
-const userSmileCount = rand(15, 40);
-const userPEI = rand(7, 10);
-const userWarmth = (Math.random() * (5 - 4) + 4).toFixed(1);
-const userEmotionalJourney = [rand(50, 80), rand(60, 90), rand(70, 100), rand(80, 100)];
+const userSmileCount = 10; // Already fixed
+const userPEI = 9; // Fixed value instead of random
+const userWarmth = 4.8; // Fixed value instead of random
+const userEmotionalJourney = [65, 78, 88, 92]; // Fixed emotional journey data
 
 // --- AI Insights Tab Data (fixed, visually distinct values) ---
 const aiPEIGender = [8.7, 7.1]; // Female and Male PEI scores
@@ -364,13 +364,62 @@ function formatNumber(v: any) {
   return typeof v === 'number' ? v.toFixed(1) : v;
 }
 
+// Added component for the smile images popup
+function SmileImagesPopup({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+  const smileImages = [
+    "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=400&h=600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1499952127939-9bbf5af6c51c?w=400&h=600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=600&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=400&h=600&auto=format&fit=crop",
+  ];
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+      <div className="bg-[#1a1a2e] border border-white/10 rounded-xl w-full max-w-4xl p-6">
+        <div className="flex justify-between items-center mb-4">
+          <h3 className="text-xl font-bold text-white">Smile Snapshots</h3>
+          <button 
+            onClick={onClose}
+            className="text-white/70 hover:text-white text-xl"
+          >
+            ×
+          </button>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          {smileImages.map((src, index) => (
+            <div key={index} className="relative h-80 rounded-lg overflow-hidden border border-white/10">
+              <Image 
+                src={src} 
+                alt={`Smile ${index + 1}`} 
+                fill
+                className="object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function AnalyticsPage() {
   const [activeTab, setActiveTab] = useState("sm");
+  const [showSmilePopup, setShowSmilePopup] = useState(false);
+  const [improvementPercent, setImprovementPercent] = useState(10); // Fixed improvement percentage
   const router = useRouter();
 
   return (
     <div className="min-h-screen bg-[#1a1a2e] py-8 px-2">
-      <SiteHeader />
+      {/* Smile Images Popup */}
+      <SmileImagesPopup 
+        isOpen={showSmilePopup} 
+        onClose={() => setShowSmilePopup(false)} 
+      />
+      
       <div className="max-w-5xl mx-auto">
         <button
           onClick={() => router.push('/app-ui')}
@@ -415,19 +464,19 @@ export default function AnalyticsPage() {
                   <div className="flex flex-col gap-4">
                     <div className="bg-white/10 rounded-lg p-4 text-white">
                       <div className="text-xs mb-1">Current SMI</div>
-                      <div className="text-2xl font-bold flex items-center gap-2">{smTrend[smTrend.length-1]} <span className="text-green-400 text-base font-normal">+{rand(5,15)}% improvement</span></div>
+                      <div className="text-xl font-bold flex items-center gap-2">{smTrend[smTrend.length-1]} <span className="text-green-400 text-sm font-normal">+{improvementPercent}% improvement</span></div>
                     </div>
                     <div className="bg-white/10 rounded-lg p-4 text-white">
                       <div className="text-xs mb-1">Engagement Rate</div>
-                      <div className="text-2xl font-bold">{rand(80, 100)}%</div>
+                      <div className="text-xl font-bold">92%</div>
                     </div>
                     <div className="bg-white/10 rounded-lg p-4 text-white">
                       <div className="text-xs mb-1">Warmth Score</div>
-                      <div className="text-2xl font-bold">{(Math.random() * (5 - 4) + 4).toFixed(1)}/5</div>
+                      <div className="text-xl font-bold">4.8/5</div>
                     </div>
                     <div className="bg-white/10 rounded-lg p-4 text-white">
                       <div className="text-xs mb-1">Average PEI</div>
-                      <div className="text-2xl font-bold">{rand(70, 100)}</div>
+                      <div className="text-xl font-bold">89</div>
                     </div>
                   </div>
                 </div>
@@ -443,15 +492,15 @@ export default function AnalyticsPage() {
                   <div className="space-y-4">
                     <div className="bg-white/10 rounded-lg p-4 flex items-center justify-between">
                       <span className="text-white/80">How well did the Host perform executing the activity and game with participants?</span>
-                      <span className="text-indigo-400 font-bold text-lg">{smFeedbackPoll[0]}/10</span>
+                      <span className="text-indigo-400 font-bold text-base">{smFeedbackPoll[0]}/10</span>
                     </div>
                     <div className="bg-white/10 rounded-lg p-4 flex items-center justify-between">
                       <span className="text-white/80">How confident and engaging was the host with participant?</span>
-                      <span className="text-indigo-400 font-bold text-lg">{smFeedbackPoll[1]}/10</span>
+                      <span className="text-indigo-400 font-bold text-base">{smFeedbackPoll[1]}/10</span>
                     </div>
                     <div className="bg-white/10 rounded-lg p-4 flex items-center justify-between">
                       <span className="text-white/80">How will you rate at an overall level the anchoring ability of SM knowing what is required at e-socialize?</span>
-                      <span className="text-indigo-400 font-bold text-lg">{smFeedbackPoll[2]}/10</span>
+                      <span className="text-indigo-400 font-bold text-base">{smFeedbackPoll[2]}/10</span>
                     </div>
                   </div>
                 </div>
@@ -479,18 +528,21 @@ export default function AnalyticsPage() {
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                   <div className="flex flex-col gap-4 col-span-2">
-                    <div className="bg-white/10 rounded-lg p-4 text-white">
+                    <div 
+                      className="bg-white/10 rounded-lg p-4 text-white cursor-pointer hover:bg-white/15 transition-colors"
+                      onClick={() => setShowSmilePopup(true)}
+                    >
                       <div className="text-xs mb-1">Smile Count</div>
-                      <div className="text-2xl font-bold">{userSmileCount}</div>
-                      <div className="text-green-400 text-xs">Moments of Joy!</div>
+                      <div className="text-xl font-bold">{userSmileCount}</div>
+                      <div className="text-green-400 text-xs">Moments of Joy! (Click to view)</div>
                     </div>
                     <div className="bg-white/10 rounded-lg p-4 text-white">
                       <div className="text-xs mb-1">PEI Score</div>
-                      <div className="text-2xl font-bold">{userPEI}</div>
+                      <div className="text-xl font-bold">{userPEI}</div>
                     </div>
                     <div className="bg-white/10 rounded-lg p-4 text-white">
                       <div className="text-xs mb-1">Warmth Level</div>
-                      <div className="text-2xl font-bold">{userWarmth}/5</div>
+                      <div className="text-xl font-bold">{userWarmth}/5</div>
                       <div className="text-green-400 text-xs">Exceptional Connection!</div>
                     </div>
                   </div>
@@ -507,11 +559,11 @@ export default function AnalyticsPage() {
                         margin={{ top: 20, right: 30, left: 20, bottom: 40 }}
                       >
                         <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                        <XAxis dataKey="time" tick={{ fill: '#fff', fontSize: 14 }} />
-                        <YAxis domain={[0, 100]} tick={{ fill: '#fff', fontSize: 14 }} />
+                        <XAxis dataKey="time" tick={{ fill: '#fff', fontSize: 12 }} />
+                        <YAxis domain={[0, 100]} tick={{ fill: '#fff', fontSize: 12 }} />
                         <Tooltip cursor={{ fill: '#6366f122' }} formatter={(v: any) => formatNumber(v)} />
                         <Bar dataKey="score" fill="#a78bfa" radius={[8, 8, 8, 8]}>
-                          <LabelList dataKey="score" position="top" fill="#fff" fontSize={16} formatter={(v: any) => formatNumber(v)} />
+                          <LabelList dataKey="score" position="top" fill="#fff" fontSize={12} formatter={(v: any) => formatNumber(v)} />
                         </Bar>
                       </BarChart>
                     </ResponsiveContainer>
@@ -566,11 +618,11 @@ export default function AnalyticsPage() {
                         margin={{ top: 20, right: 30, left: 20, bottom: 40 }}
                       >
                         <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                        <XAxis dataKey="gender" tick={{ fill: '#a78bfa', fontSize: 14 }} />
-                        <YAxis domain={[0, 10]} tick={{ fill: '#fff', fontSize: 14 }} />
+                        <XAxis dataKey="gender" tick={{ fill: '#a78bfa', fontSize: 12 }} />
+                        <YAxis domain={[0, 10]} tick={{ fill: '#fff', fontSize: 12 }} />
                         <Tooltip cursor={{ fill: '#6366f122' }} formatter={(v: any) => formatNumber(v)} />
                         <Bar dataKey="score" fill="#a78bfa" radius={[8, 8, 8, 8]}>
-                          <LabelList dataKey="score" position="top" fill="#fff" fontSize={16} formatter={(v: any) => formatNumber(v)} />
+                          <LabelList dataKey="score" position="top" fill="#fff" fontSize={12} formatter={(v: any) => formatNumber(v)} />
                         </Bar>
                       </BarChart>
                     </ResponsiveContainer>
@@ -579,7 +631,7 @@ export default function AnalyticsPage() {
                   {/* 2. Avg Participants */}
                   <div className="bg-white/10 rounded-xl p-4 flex flex-col items-center justify-center">
                     <h3 className="text-base text-white font-semibold mb-4">Avg Participants per Session</h3>
-                    <div className="text-4xl font-bold text-indigo-400 mb-1">{aiAvgParticipants}</div>
+                    <div className="text-3xl font-bold text-indigo-400 mb-1">{aiAvgParticipants}</div>
                   </div>
 
                   {/* 3. Weekend Sessions */}
