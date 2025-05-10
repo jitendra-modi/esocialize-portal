@@ -43,7 +43,7 @@ export const createAdminUser = async () => {
     );
     console.log('Admin user created:', userCredential.user);
     return userCredential.user;
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error creating admin user:', error);
     // If error code is 'auth/email-already-in-use', that's actually fine
     if (error.code === 'auth/email-already-in-use') {
@@ -55,11 +55,11 @@ export const createAdminUser = async () => {
 };
 
 // Function to sign in the admin user
-export const signInAdmin = async (email, password) => {
+export const signInAdmin = async (email: string, password: string) => {
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     return userCredential.user;
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error signing in admin:', error);
     throw error;
   }

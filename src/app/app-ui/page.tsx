@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useAuth } from '@/context/AuthContext';
-import SiteHeader from '@/components/SiteHeader';
+import { useRouter } from 'next/navigation';
 
 interface QuadrantProps {
   title: string;
@@ -45,29 +45,33 @@ const Metric = ({ label, value, color }: { label: string; value: string; color: 
 
 export default function AppUIPage() {
   const { user, logout } = useAuth();
+  const router = useRouter();
+  
   return (
     <div className="min-h-screen bg-[#1a1a2e] py-4 sm:py-6">
-      <SiteHeader />
       <div className="max-w-5xl mx-auto px-3 sm:px-4">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-4 sm:mb-6"
+          className="mb-4 sm:mb-6"
         >
-          <Link 
-            href="/"
-            className="inline-flex items-center text-white/70 hover:text-white transition-colors mb-2 sm:mb-3"
+          <button
+            onClick={() => router.push('/')}
+            className="mb-6 bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-lg font-medium backdrop-blur-lg border border-white/10 transition text-left"
           >
-            <span className="mr-2">←</span> Back to Dashboard
-          </Link>
-          <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2">
-            E-Socialize App UI
-          </h1>
-          <p className="text-xs sm:text-sm text-white/80 max-w-3xl mx-auto">
-            Revolutionizing Virtual Social Interactions with AI
-          </p>
+            ← Back to Home
+          </button>
+          
+          <div className="text-center">
+            <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2">
+              E-Socialize App UI
+            </h1>
+            <p className="text-xs sm:text-sm text-white/80 max-w-3xl mx-auto">
+              Revolutionizing Virtual Social Interactions with AI
+            </p>
+          </div>
         </motion.div>
 
         {/* Main Content */}
@@ -84,7 +88,7 @@ export default function AppUIPage() {
                   </div>
                   <div className="space-y-2">
                     <div className="flex items-center justify-between text-[10px] text-white/70">
-                      <span>Group Positivity</span>
+                      <span>AI Emotion Analysis</span>
                       <span>85%</span>
                     </div>
                     <div className="h-2 bg-white/10 rounded-full overflow-hidden">
@@ -352,7 +356,7 @@ export default function AppUIPage() {
                   <div className="bg-white/5 rounded-lg p-3 text-center">
                     <div className="text-2xl mb-1">🎓</div>
                     <div className="text-white text-sm font-medium">850+</div>
-                    <div className="text-white/50 text-xs">Graduates</div>
+                    <div className="text-white/50 text-xs">Trained</div>
                   </div>
                 </div>
               </div>

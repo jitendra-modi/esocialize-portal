@@ -8,7 +8,6 @@ import {
   PieChart, Pie, Cell, LineChart, Line, Legend, Label
 } from 'recharts';
 import { useRouter } from 'next/navigation';
-import SiteHeader from '@/components/SiteHeader';
 
 // Define interface for metric items
 interface MetricItem {
@@ -196,14 +195,14 @@ export default function RoadmapPage() {
 
   return (
     <div className="min-h-screen bg-[#1a1a2e] px-2 sm:px-4">
-      <SiteHeader />
       <div className="w-full mx-auto">
         <button
-          onClick={() => router.push('/app-ui')}
+          onClick={() => router.push('/')}
           className="mb-6 bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-lg font-medium backdrop-blur-lg border border-white/10 transition text-left"
         >
-          ← Back to Dashboard
+          ← Back to Home
         </button>
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -214,19 +213,23 @@ export default function RoadmapPage() {
             <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">Roadmap</h1>
             <p className="text-white/80 text-sm">E-Socialize First year Q1–Q4 Roadmap & Metrics. Scaling Community Size, SM Capacity & Spend Efficiency.</p>
           </div>
+
+          <div className="flex justify-end mb-8">
+            <button className="bg-white border border-gray-200 rounded-xl px-4 py-2 text-gray-700 font-semibold shadow-md hover:bg-gray-50 transition">
+              Download
+            </button>
+          </div>
+
           {/* 1. HEADER & KPI OVERVIEW */}
           <div className="flex items-center justify-between mb-8">
             <div>
-              <h1 className="text-2xl font-bold mb-4">
+              <h1 className="text-2xl font-bold mb-4 text-white">
                 E-Socialize First year Q1–Q4 Roadmap & Metrics
               </h1>
               <p className="text-base text-white/80">
                 Scaling Community Size, SM Capacity & Spend Efficiency
               </p>
             </div>
-            <button className="bg-white border border-gray-200 rounded-xl px-4 py-2 text-gray-700 font-semibold shadow-md hover:bg-gray-50 transition">
-              Download
-            </button>
           </div>
 
           {/* KPI Cards Row */}
@@ -344,8 +347,8 @@ export default function RoadmapPage() {
                     {quarterlyData.map((q, i) => (
                       <text 
                         key={i} 
-                        x={100 + i * 180} // Adjust positioning for more space
-                        y={50} 
+                        x={70 + i * 195} // Adjust positioning for better spacing
+                        y={30} 
                         fill={q.color} 
                         fontSize={12} 
                         fontWeight="bold"
@@ -436,20 +439,21 @@ export default function RoadmapPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
                 <div className="flex flex-col items-center">
                   <h4 className="text-base font-semibold text-gray-700 mb-6">Region (Marketing Spend)</h4>
-                  <div className="h-80 w-full max-w-md">
+                  <div className="h-96 w-full max-w-md">
                     <ResponsiveContainer width="100%" height="100%">
-                      <PieChart>
+                      <PieChart margin={{ top: 10, right: 10, left: 10, bottom: 10 }}>
                         <Pie
                           data={quarterlyData[activeQuarter].region}
                           dataKey="value"
                           nameKey="name"
                           cx="50%"
                           cy="50%"
-                          innerRadius={80}
-                          outerRadius={120}
+                          innerRadius={70}
+                          outerRadius={100}
                           paddingAngle={4}
                           label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
-                          labelLine={true}
+                          labelLine={{ strokeWidth: 1 }}
+                          fontSize={11}
                         >
                           {quarterlyData[activeQuarter].region.map((entry, index) => (
                             <Cell key={`cell-${index}`} fill={pieColors[index % pieColors.length]} />
@@ -463,20 +467,21 @@ export default function RoadmapPage() {
                 </div>
                 <div className="flex flex-col items-center">
                   <h4 className="text-base font-semibold text-gray-700 mb-6">Segment (Marketing Spend)</h4>
-                  <div className="h-80 w-full max-w-md">
+                  <div className="h-96 w-full max-w-md">
                     <ResponsiveContainer width="100%" height="100%">
-                      <PieChart>
+                      <PieChart margin={{ top: 10, right: 10, left: 10, bottom: 10 }}>
                         <Pie
                           data={quarterlyData[activeQuarter].segment}
                           dataKey="value"
                           nameKey="name"
                           cx="50%"
                           cy="50%"
-                          innerRadius={80}
-                          outerRadius={120}
+                          innerRadius={70}
+                          outerRadius={100}
                           paddingAngle={4}
                           label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
-                          labelLine={true}
+                          labelLine={{ strokeWidth: 1 }}
+                          fontSize={11}
                         >
                           {quarterlyData[activeQuarter].segment.map((entry, index) => (
                             <Cell key={`cell-${index}`} fill={pieColors[index % pieColors.length]} />

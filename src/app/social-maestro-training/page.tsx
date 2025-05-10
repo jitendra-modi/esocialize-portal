@@ -4,7 +4,6 @@ import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useRouter } from 'next/navigation';
-import SiteHeader from '@/components/SiteHeader';
 
 const trainingScores = [
   { label: "Speaking Confidence", value: 72 },
@@ -23,7 +22,6 @@ export default function SocialMaestroTrainingPage() {
   const router = useRouter();
   return (
     <div className="min-h-screen bg-[#1a1a2e] py-8 px-2">
-      <SiteHeader />
       <div className="max-w-4xl mx-auto px-4">
         <button
           onClick={() => router.push('/app-ui')}

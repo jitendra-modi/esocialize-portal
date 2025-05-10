@@ -4,13 +4,11 @@ import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useRouter } from 'next/navigation';
-import SiteHeader from '@/components/SiteHeader';
 
 export default function AIPluginPage() {
   const router = useRouter();
   return (
     <div className="min-h-screen bg-[#181c2e] py-8 px-2">
-      <SiteHeader />
       <div className="max-w-4xl mx-auto px-4">
         <button
           onClick={() => router.push('/app-ui')}
