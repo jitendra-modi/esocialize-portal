@@ -1,0 +1,443 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-rgb: 249, 250, 251;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+@layer components {
+  .card {
+    @apply bg-white shadow-md rounded-2xl p-6;
+  }
+  
+  .btn-primary {
+    @apply px-4 py-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition-colors;
+  }
+  
+  .heading {
+    @apply text-navy-800 font-bold;
+  }
+
+  .vertical-timeline {
+    @apply relative;
+    min-height: calc(100vh - 16rem);
+  }
+
+  .vertical-timeline::before {
+    content: '';
+    @apply absolute left-24 top-0 bottom-0 w-0.5;
+    background: linear-gradient(
+      to bottom,
+      theme('colors.pink.500'),
+      theme('colors.emerald.500'),
+      theme('colors.blue.500')
+    );
+  }
+
+  .timeline-item {
+    @apply absolute left-0 transform -translate-y-1/2;
+    transition: all 0.3s ease;
+  }
+
+  .timeline-item:hover {
+    transform: translateY(-50%) translateX(4px);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-fade-in-left {
+  animation: fadeInLeft 0.6s ease-out forwards;
+}
+
+.animation-delay-100 {
+  animation-delay: 100ms;
+}
+
+.animation-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animation-delay-300 {
+  animation-delay: 300ms;
+}
+
+.animation-delay-400 {
+  animation-delay: 400ms;
+}
+
+/* Architecture page styles */
+.architecture-page {
+  scroll-behavior: smooth;
+}
+
+/* Layer section spacing and transitions */
+.layer-section {
+  scroll-margin-top: 2rem;
+  transition: all 0.5s ease;
+}
+
+/* Timeline styles */
+.timeline-item {
+  position: relative;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transform: translateX(-50%);
+}
+
+/* Glass effect styling */
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+/* Pulse animation for connector lines */
+@keyframes pulse {
+  0% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.4;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Hover effects */
+.hover-scale {
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+/* Active section highlight */
+.active-section {
+  transform: scale(1.02);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+}
+
+/* Gradient text effect */
+.gradient-text {
+  background: linear-gradient(to right, #fff, #a5b4fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Active layer animations */
+.active-layer {
+  transform: scale(1.02);
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
+}
+
+/* App UI Page Styles */
+.app-ui-page {
+  scroll-behavior: smooth;
+}
+
+.quadrant {
+  position: relative;
+  transition: all 0.5s ease;
+}
+
+.quadrant:hover {
+  transform: scale(1.02);
+}
+
+.quadrant::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 1rem;
+  padding: 1px;
+  background: linear-gradient(45deg, rgba(108, 99, 255, 0.5), rgba(0, 194, 178, 0.5));
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.quadrant:hover::before {
+  opacity: 1;
+}
+
+.ai-bar {
+  position: relative;
+  overflow: hidden;
+}
+
+.ai-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.metric-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.metric-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.1),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.metric-card:hover::before {
+  opacity: 1;
+}
+
+.central-spine {
+  position: relative;
+}
+
+.central-spine::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+}
+
+.avatar-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.avatar {
+  position: relative;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.avatar:hover {
+  transform: scale(1.05);
+}
+
+.avatar.sm-badge::after {
+  content: 'SM';
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  background: rgba(255, 255, 255, 0.9);
+  color: #1a1a2e;
+  font-size: 0.75rem;
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+}
+
+.practice-room {
+  position: relative;
+}
+
+.practice-avatar {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.practice-avatar:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+/* Chart Styles */
+.chart-container {
+  position: relative;
+  height: 200px;
+  padding: 1rem;
+}
+
+.chart-line {
+  stroke: url(#gradient);
+  stroke-width: 2;
+  fill: none;
+}
+
+.chart-area {
+  fill: url(#areaGradient);
+  opacity: 0.1;
+}
+
+.chart-dot {
+  fill: white;
+  r: 4;
+  transition: r 0.3s ease;
+}
+
+.chart-dot:hover {
+  r: 6;
+}
+
+/* Animation Keyframes */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Custom scrollbar for admin panel */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Checkbox styling */
+input[type="checkbox"] {
+  accent-color: #3498DB;
+}
+
+/* Firebase auth related animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slide-up {
+  animation: slideUp 0.5s ease-out;
+} 
