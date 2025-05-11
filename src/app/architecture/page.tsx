@@ -309,13 +309,13 @@ export default function ArchitecturePage() {
       
       // Update active section
       setActiveSection(currentSection);
-      
-      // Add highlight class to the corresponding layer
-      sections.forEach((s, i) => {
+          
+          // Add highlight class to the corresponding layer
+          sections.forEach((s, i) => {
         if (i === currentSection) {
-          s.classList.add('active-layer');
-        } else {
-          s.classList.remove('active-layer');
+              s.classList.add('active-layer');
+            } else {
+              s.classList.remove('active-layer');
         }
       });
     };
@@ -329,12 +329,12 @@ export default function ArchitecturePage() {
     <div className="min-h-screen bg-[#1a1a2e] py-4 sm:py-6">
       <div className="w-full px-3 sm:px-4">
         <div className="mb-6">
-          <button
+        <button
             onClick={() => router.push('/')}
             className="bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-lg font-medium backdrop-blur-lg border border-white/10 transition text-left"
-          >
+        >
             ← Back to Home
-          </button>
+        </button>
         </div>
         
         <motion.div
@@ -347,80 +347,80 @@ export default function ArchitecturePage() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-center mb-4 sm:mb-6"
-          >
-            <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2">
-              E-Socialize Architecture
-            </h1>
-            <p className="text-xs sm:text-sm text-white/80 max-w-3xl mx-auto">
-              A comprehensive emotion-driven social platform powered by advanced AI integration
-            </p>
-          </motion.div>
+          className="text-center mb-4 sm:mb-6"
+        >
+          <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2">
+            E-Socialize Architecture
+          </h1>
+          <p className="text-xs sm:text-sm text-white/80 max-w-3xl mx-auto">
+            A comprehensive emotion-driven social platform powered by advanced AI integration
+          </p>
+        </motion.div>
 
-          {/* Responsive Layout */}
+        {/* Responsive Layout */}
           <div className={`${isMobile ? 'flex flex-col' : 'relative flex justify-center gap-4'}`}>
-            {/* Mobile Timeline at top */}
-            {isMobile && (
+          {/* Mobile Timeline at top */}
+          {isMobile && (
               <div className="mb-4 bg-white/5 p-3 rounded-xl backdrop-blur mx-auto max-w-full overflow-x-auto">
                 <h3 className="text-white mb-2 font-medium text-sm text-center">Architecture Layers</h3>
                 <div className="flex justify-center gap-2 pb-2 scrollbar-hide">
-                  {timelineItems.map((item, index) => (
-                    <div 
-                      key={index}
-                      onClick={() => {
-                        const element = document.getElementById(`layer-${index}`);
-                        element?.scrollIntoView({ behavior: 'smooth' });
+                {timelineItems.map((item, index) => (
+                  <div 
+                    key={index}
+                    onClick={() => {
+                      const element = document.getElementById(`layer-${index}`);
+                      element?.scrollIntoView({ behavior: 'smooth' });
                         setActiveSection(index);
-                      }}
-                      className={`
-                        flex-shrink-0 flex items-center gap-2 p-2 rounded-lg cursor-pointer
-                        border border-white/10 transition-all duration-300
+                    }}
+                    className={`
+                      flex-shrink-0 flex items-center gap-2 p-2 rounded-lg cursor-pointer
+                      border border-white/10 transition-all duration-300
                         ${activeSection === index ? 'bg-white/20 border-white/30 scale-105' : 'bg-white/5 hover:bg-white/10'}
-                      `}
-                    >
-                      <div className={`
-                        w-6 h-6 rounded-full flex items-center justify-center text-xs
-                        ${activeSection === index ? 'bg-white text-indigo-950' : 'bg-white/10 text-white'}
+                    `}
+                  >
+                    <div className={`
+                      w-6 h-6 rounded-full flex items-center justify-center text-xs
+                      ${activeSection === index ? 'bg-white text-indigo-950' : 'bg-white/10 text-white'}
                         transition-all duration-300
-                      `}>
-                        {item.layerNumber}
-                      </div>
-                      <div className="text-white text-xs">{item.title}</div>
+                    `}>
+                      {item.layerNumber}
                     </div>
-                  ))}
-                </div>
+                    <div className="text-white text-xs">{item.title}</div>
+                  </div>
+                ))}
               </div>
-            )}
+            </div>
+          )}
 
-            {/* Desktop Timeline - Fixed with auto height */}
-            {!isMobile && (
+          {/* Desktop Timeline - Fixed with auto height */}
+          {!isMobile && (
               <div className="w-[200px] h-auto flex-shrink-0">
                 <div className="fixed top-1/2 -translate-y-1/2 left-16 pt-4 overflow-visible">
                   <div className="space-y-8 pr-4">
-                    {timelineItems.map((item, index) => (
-                      <TimelineItem
-                        key={index}
-                        {...item}
-                        isActive={index === activeSection}
-                        layerNumber={item.layerNumber}
-                      />
-                    ))}
+                {timelineItems.map((item, index) => (
+                  <TimelineItem
+                    key={index}
+                    {...item}
+                    isActive={index === activeSection}
+                    layerNumber={item.layerNumber}
+                  />
+                ))}
                   </div>
-                </div>
               </div>
-            )}
+            </div>
+          )}
 
-            {/* Main Content - Adjust margin based on viewport */}
+          {/* Main Content - Adjust margin based on viewport */}
             <div className={`flex-1 mx-auto flex flex-col items-center w-full max-w-3xl ${!isMobile ? 'ml-[160px]' : ''} bg-white/5 backdrop-blur-lg rounded-xl p-6 border border-white/10`}>
               <div className="space-y-5 w-full">
-                {layers.map((layer, index) => (
-                  <motion.div
-                    key={index}
-                    id={`layer-${index}`}
+              {layers.map((layer, index) => (
+                <motion.div
+                  key={index}
+                  id={`layer-${index}`}
                     className={`layer-section transition-all duration-500 w-full
                       ${index === activeSection ? 'scale-100 shadow-lg' : 'opacity-75 scale-95 hover:opacity-90 hover:scale-97'}
-                    `}
-                    initial={{ opacity: 0, y: 20 }}
+                  `}
+                  initial={{ opacity: 0, y: 20 }}
                     animate={{ 
                       opacity: index === activeSection ? 1 : 0.75, 
                       y: 0,
@@ -430,18 +430,18 @@ export default function ArchitecturePage() {
                       scale: index === activeSection ? 1 : 0.97,
                       opacity: index === activeSection ? 1 : 0.9
                     }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
                     onClick={() => setActiveSection(index)}
-                  >
-                    <ArchitectureLayer
-                      {...layer}
-                      delay={index + 1}
-                    />
-                  </motion.div>
-                ))}
-              </div>
+                >
+                  <ArchitectureLayer
+                    {...layer}
+                    delay={index + 1}
+                  />
+                </motion.div>
+              ))}
             </div>
           </div>
+        </div>
         </motion.div>
       </div>
     </div>
