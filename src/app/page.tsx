@@ -165,31 +165,33 @@ export default function Home() {
                   className="break-inside-avoid bg-white/5 backdrop-blur-lg rounded-xl p-3 border border-white/10 hover:bg-white/10 transition-all duration-300 h-fit mb-4"
                 >
                   <h3 className="text-sm font-semibold text-white mb-2">Pitch Deck</h3>
-                  <div className="bg-gradient-to-r from-[#FF416C] to-[#FF4B2B] rounded-lg p-3 hover:opacity-90 transition-all duration-300 h-fit">
-                    <h2 className="text-sm font-bold text-white mb-2">Interactive Presentation</h2>
-                    <p className="text-white text-xs mb-2">Market opportunity, tech & growth strategy details</p>
-                    <div className="grid grid-cols-2 gap-2 mb-2">
-                      <div className="bg-white/10 rounded-lg p-2 flex flex-col items-center">
-                        <span className="text-white text-xs font-semibold">Market Data</span>
-                        <span className="text-white text-[10px] text-center">Growth insights</span>
+                  <Link href="/pitch-deck" className="block">
+                    <div className="bg-gradient-to-r from-[#FF416C] to-[#FF4B2B] rounded-lg p-3 hover:opacity-90 transition-all duration-300 h-fit">
+                      <h2 className="text-sm font-bold text-white mb-2">Interactive Presentation</h2>
+                      <p className="text-white text-xs mb-2">Market opportunity, tech & growth strategy details</p>
+                      <div className="grid grid-cols-2 gap-2 mb-2">
+                        <div className="bg-white/10 rounded-lg p-2 flex flex-col items-center">
+                          <span className="text-white text-xs font-semibold">Market Data</span>
+                          <span className="text-white text-[10px] text-center">Growth insights</span>
+                        </div>
+                        <div className="bg-white/10 rounded-lg p-2 flex flex-col items-center">
+                          <span className="text-white text-xs font-semibold">Financials</span>
+                          <span className="text-white text-[10px] text-center">Projections</span>
+                        </div>
+                        <div className="bg-white/10 rounded-lg p-2 flex flex-col items-center">
+                          <span className="text-white text-xs font-semibold">Technology</span>
+                          <span className="text-white text-[10px] text-center">Platform details</span>
+                        </div>
+                        <div className="bg-white/10 rounded-lg p-2 flex flex-col items-center">
+                          <span className="text-white text-xs font-semibold">Team</span>
+                          <span className="text-white text-[10px] text-center">Leadership</span>
+                        </div>
                       </div>
-                      <div className="bg-white/10 rounded-lg p-2 flex flex-col items-center">
-                        <span className="text-white text-xs font-semibold">Financials</span>
-                        <span className="text-white text-[10px] text-center">Projections</span>
-                      </div>
-                      <div className="bg-white/10 rounded-lg p-2 flex flex-col items-center">
-                        <span className="text-white text-xs font-semibold">Technology</span>
-                        <span className="text-white text-[10px] text-center">Platform details</span>
-                      </div>
-                      <div className="bg-white/10 rounded-lg p-2 flex flex-col items-center">
-                        <span className="text-white text-xs font-semibold">Team</span>
-                        <span className="text-white text-[10px] text-center">Leadership</span>
+                      <div className="flex justify-end">
+                        <span className="text-white text-xs font-semibold hover:text-white transition-colors">View Pitch Deck &rarr;</span>
                       </div>
                     </div>
-                    <div className="flex justify-end">
-                      <span className="text-white text-xs font-semibold hover:text-white transition-colors">View Pitch Deck &rarr;</span>
-                    </div>
-                  </div>
+                  </Link>
                 </motion.div>
               </AnimatePresence>
             )}
