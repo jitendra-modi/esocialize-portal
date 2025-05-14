@@ -1,0 +1,148 @@
+"use client";
+
+import React from 'react';
+import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
+
+export default function RoadmapPage() {
+  const router = useRouter();
+  
+  const roadmapItems = [
+    {
+      quarter: 'Q1 2023',
+      title: 'Platform Foundation',
+      milestones: [
+        'Community Growth to 500 Users',
+        'Social Maestro Pool: 50 Facilitators',
+        'Basic AI Matching Engine',
+        'Initial Training Program Launch',
+      ],
+      color: 'from-blue-500 to-indigo-600'
+    },
+    {
+      quarter: 'Q2 2023',
+      title: 'Expansion Phase',
+      milestones: [
+        'Community Growth: 5,000 Users',
+        'Overseas Members: 200',
+        'Social Maestro Pool: 250 Facilitators',
+        'Enhanced AI Script Generation',
+      ],
+      color: 'from-indigo-500 to-purple-600'
+    },
+    {
+      quarter: 'Q3 2023',
+      title: 'Enterprise Integration',
+      milestones: [
+        'Community Growth: 30,000 Users',
+        'Corporate Users: 2,000',
+        'Social Maestro Pool: 2,500 Facilitators',
+        'Advanced Analytics Dashboard',
+      ],
+      color: 'from-purple-500 to-pink-600'
+    },
+    {
+      quarter: 'Q4 2023',
+      title: 'Monetization Strategy',
+      milestones: [
+        'Community Growth: 150,000 Users',
+        'Premium Subscription Launch',
+        'Overseas Expansion: 5,000 Users',
+        'Corporate Partnership Program',
+      ],
+      color: 'from-pink-500 to-red-600'
+    },
+    {
+      quarter: 'Q1 2024',
+      title: 'Platform Enhancement',
+      milestones: [
+        'Mobile App Launch',
+        'Advanced AI Emotion Recognition',
+        'Enterprise Solution Deployment',
+        'Certification Program for Social Maestros',
+      ],
+      color: 'from-red-500 to-orange-600'
+    },
+    {
+      quarter: 'Q2 2024',
+      title: 'Global Expansion',
+      milestones: [
+        'Multi-language Support',
+        'International Partner Network',
+        'Cultural Adaptation Framework',
+        'Localized Content Creation',
+      ],
+      color: 'from-orange-500 to-amber-600'
+    }
+  ];
+
+  return (
+    <div className="min-h-screen bg-[#1a1a2e] py-4 sm:py-6">
+      <div className="max-w-5xl mx-auto px-3 sm:px-4">
+        {/* Header */}
+        <div className="mb-6">
+        <button
+            onClick={() => router.push('/')}
+          className="mb-6 bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-lg font-medium backdrop-blur-lg border border-white/10 transition text-left"
+        >
+            ← Back to Home
+        </button>
+          
+          <div className="text-center">
+            <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2">
+              E-Socialize Roadmap
+              </h1>
+            <p className="text-xs sm:text-sm text-white/80 max-w-3xl mx-auto">
+              Our strategic timeline for growth and platform development
+              </p>
+          </div>
+        </div>
+
+        {/* Roadmap Timeline */}
+        <div className="relative pt-10 pb-20">
+          {/* Center line */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-white/30 to-transparent"></div>
+          
+          {/* Roadmap Items */}
+          <div className="space-y-12">
+            {roadmapItems.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className={`relative flex flex-col md:flex-row md:items-center ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}
+              >
+                {/* Quarter Badge */}
+                <div className="absolute left-1/2 transform -translate-x-1/2 -mt-6 z-10">
+                  <div className={`bg-gradient-to-r ${item.color} rounded-full px-3 py-1 text-xs font-bold text-white shadow-lg`}>
+                    {item.quarter}
+          </div>
+          </div>
+
+                {/* Content Card */}
+                <div className={`md:w-5/12 bg-white/5 backdrop-blur-lg rounded-xl p-4 border border-white/10 
+                  ${index % 2 === 0 ? 'md:ml-auto' : 'md:mr-auto'}`}>
+                  <h2 className="text-sm font-bold text-white mb-2">{item.title}</h2>
+                  <ul className="space-y-2">
+                    {item.milestones.map((milestone, i) => (
+                      <li key={i} className="flex items-start">
+                        <span className="text-xs text-white/20 mr-2">•</span>
+                        <span className="text-xs text-white/80">{milestone}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                
+                {/* Connector to center line */}
+                <div className="hidden md:block md:w-2/12 relative">
+                  <div className={`absolute top-1/2 w-full h-0.5 bg-gradient-to-r ${item.color} ${index % 2 === 0 ? '' : 'transform rotate-180'}`}></div>
+                </div>
+              </motion.div>
+            ))}
+            </div>
+          </div>
+      </div>
+    </div>
+  );
+} 

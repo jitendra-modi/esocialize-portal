@@ -26,7 +26,7 @@ export default function Login() {
       >
         <div className="text-center mb-6">
           <h1 className="text-2xl font-bold text-white mb-2">
-            E-Socialize Management System
+            E-Socialize Information Portal
           </h1>
           <p className="text-white/60 mb-6">Sign in with Google to request access</p>
           

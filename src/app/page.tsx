@@ -82,7 +82,7 @@ export default function Home() {
                     <div className="bg-gradient-to-r from-[#4A00E0] to-[#8E2DE2] rounded-lg p-3 hover:opacity-90 transition-all duration-300 h-fit">
                       <h2 className="text-sm font-bold text-white mb-2">4-Layer System</h2>
                       <div className="grid grid-cols-4 gap-1 mb-2">
-                        {["L1", "L2", "L3", "L4"].map((layer, i) => (
+                            {["L1", "L2", "L3", "L4"].map((layer, i) => (
                           <div key={i} className="bg-white/10 rounded-lg p-1 flex flex-col items-center">
                             <span className="text-white text-xs font-semibold">{layer}</span>
                             <span className="text-white text-[10px] text-center">
@@ -166,7 +166,7 @@ export default function Home() {
                 >
                   <h3 className="text-sm font-semibold text-white mb-2">Pitch Deck</h3>
                   <Link href="/pitch-deck" className="block">
-                    <div className="bg-gradient-to-r from-[#FF416C] to-[#FF4B2B] rounded-lg p-3 hover:opacity-90 transition-all duration-300 h-fit">
+                  <div className="bg-gradient-to-r from-[#FF416C] to-[#FF4B2B] rounded-lg p-3 hover:opacity-90 transition-all duration-300 h-fit">
                       <h2 className="text-sm font-bold text-white mb-2">Interactive Presentation</h2>
                       <p className="text-white text-xs mb-2">Market opportunity, tech & growth strategy details</p>
                       <div className="grid grid-cols-2 gap-2 mb-2">

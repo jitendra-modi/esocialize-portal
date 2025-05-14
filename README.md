@@ -1,4 +1,4 @@
-# E-Socialize Management System
+# E-Socialize Information Portal
 
 A modern, responsive portal for E-Socialize by Positive Emotions Lab, built with Next.js and Tailwind CSS.
 
@@ -91,4 +91,4 @@ See [VERCEL-DEPLOYMENT.md](./VERCEL-DEPLOYMENT.md) for detailed deployment instr
 
 ## About
 
-E-Socialize Management System is a modern web application built to streamline social management processes. 
+E-Socialize Information Portal is a modern web application built to streamline social management processes. 

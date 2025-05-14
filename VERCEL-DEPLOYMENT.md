@@ -1,6 +1,6 @@
-# Deploying to Vercel
+# Vercel Deployment Guide
 
-This document provides instructions for deploying the E-Socialize Management System to Vercel.
+This document provides instructions for deploying the E-Socialize Information Portal to Vercel.
 
 ## Prerequisites
 

@@ -21,7 +21,7 @@ export default function SiteHeader() {
           />
         </div>
         <div className="flex flex-col gap-0.5">
-          <h1 className="text-2xl font-extrabold text-white tracking-tight drop-shadow-lg">E-Socialize Management System</h1>
+          <h1 className="text-2xl font-extrabold text-white tracking-tight drop-shadow-lg">E-Socialize Information Portal</h1>
           <p className="text-sm text-white/70 font-medium">Creating meaningful social connections through positive emotional experiences.</p>
         </div>
       </div>

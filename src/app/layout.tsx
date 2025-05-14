@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.className}>
       <head>
-        <title>E-Socialize Management System</title>
+        <title>E-Socialize Information Portal</title>
         <meta name="description" content="Portal for E-Socialize by Positive Emotions Lab" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
